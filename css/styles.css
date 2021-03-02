@@ -1,0 +1,152 @@
+html {
+	font-size: 62.5%;
+}
+
+/* mobile first css */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+    background-color: #192f5e;
+}
+
+/* styling the default or generic state of the navigation - mobile first */
+
+header {
+	background-color: #fff; /* temporary while building*/
+	padding: 2%;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: block; /* allows the clickable area to fill the whole container <li> */
+}
+
+.menu a:hover,
+.menu a:active {
+    background-color: gainsboro;
+    border-radius: 4px;
+}
+
+.toggle-btn {
+    border: none;
+    background-color: #fff;
+    outline: none;
+}
+
+.toggle-btn:hover {
+    cursor: pointer; /* makes the toggle look like a piece of navigation */
+}
+
+svg rect {
+    fill: #3f3f3f; /* modify colour of svg */
+}
+
+.menu li {
+    line-height: 4rem; /* use the line height to increase the height of the li */
+    text-align: center;
+    }
+
+
+
+header nav {
+    /* this element will overlap the main content. this element does not have a parent container that is position: relative; therefore, it is positioned relative to the browser screen */
+    position: absolute;
+    top: 4.9rem; /* the height of the closed header */
+    left: 0;
+    /* once position: absolute; the header doesn't see it anymore so it loses its bg colour, put it back */
+    background-color: #fff;
+    width: 100vw;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.7s ease-in-out;
+}
+
+ul.menu {
+    padding-bottom: 1rem;
+}
+
+/* add accessibility with the focus-within state on the <li> which will target the anchor tags inside. this is for tabbed navigation for screen readers */
+ul.menu li:focus-within > ul,
+ul.menu li > ul:focus {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+/* this class exists only in the css file and the js will swap it with toggle-nav using classList method */
+.show-nav {
+    max-height: 20rem;
+}
+
+/* ************************* section ****************** */
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p {
+    color: #d5e294;
+    border-bottom: 2px solid #d5e294;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 1.777rem;
+}
+
+section h2,
+footer {
+    color: #fff;
+    font-size: 3.157rem;
+    margin-bottom: 2rem;
+}
+
+/*--- Footer --- */
+footer {
+	text-align: center;
+	position: -webkit-sticky;
+	position: sticky;
+}
+
+/* hide the menu, this will be the default stage. note: the display: none; property cannot be transitioned */
+
+@media only screen and (min-width: 520px) {
+    .toggle-btn {
+        display: none;
+    } 
+
+    /* show header nav again, give height. reset position value to static and width */
+    header nav {
+        position: static;
+        width: auto;
+        max-height: 20rem; 
+        overflow: visible;
+    }
+
+    .menu,
+    header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu li {
+        margin-left: 0.5rem;
+    }
+
+    .menu li a {
+        padding: 0.5rem; 
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    header {
+        width: 1300px;
+        margin: 0 auto;
+    }
+}
